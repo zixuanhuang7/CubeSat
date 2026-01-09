@@ -69,26 +69,30 @@ def take_photo():
     This function is NOT complete. Takes a photo when the FlatSat is shaken.
     Replace psuedocode with your own code.
     """
-    while True:
-        accelx, accely, accelz = accel_gyro.acceleration
+    try:
+        while True:
+            accelx, accely, accelz = accel_gyro.acceleration
 
-        if (abs(accelx) > THRESHOLD or abs(accely) > THRESHOLD or abs(accelz) > THRESHOLD):
-            time.sleep(2)
-            name="ZixuanH"   #First Name, Last Initial  ex. MasonM
-            imgname = img_gen(name)
-            picam2.start()
-            time.sleep(1)
-            picam2.capture_file(imgname)
-            git_push()
-            time.sleep(2)
+            if (abs(accelx) > THRESHOLD or abs(accely) > THRESHOLD or abs(accelz) > THRESHOLD):
+                time.sleep(2)
+                name="ZixuanH"   #First Name, Last Initial  ex. MasonM
+                imgname = img_gen(name)
+                picam2.start()
+                time.sleep(1)
+                picam2.capture_file(imgname)
+                git_push()
+                time.sleep(2)
 
-        #CHECKS IF READINGS ARE ABOVE THRESHOLD
+            #CHECKS IF READINGS ARE ABOVE THRESHOLD
+                #PAUSE
+                #name = ""     #First Name, Last Initial  ex. MasonM
+                #TAKE PHOTO
+                #PUSH PHOTO TO GITHUB
+            
             #PAUSE
-            #name = ""     #First Name, Last Initial  ex. MasonM
-            #TAKE PHOTO
-            #PUSH PHOTO TO GITHUB
-        
-        #PAUSE
+    except KeyboardInterrupt:
+        print("Exit condition triggered - stopping photo capture")
+        picam2.stop()
 
 
 def main():
