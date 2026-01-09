@@ -23,7 +23,7 @@ from picamera2 import Picamera2
 
 #VARIABLES
 THRESHOLD = 0      #Any desired value from the accelerometer
-REPO_PATH = "/home/zixuanhuang/Documents/FlatSat"     #Your github repo path: ex. /home/pi/FlatSatChallenge
+REPO_PATH = "/home/zixuanhuang/Documents/CubeSat"     #Your github repo path: ex. /home/pi/FlatSatChallenge
 FOLDER_PATH = "/Images"   #Your image folder path in your GitHub repo: ex. /Images
 
 #imu and camera initialization
@@ -80,7 +80,6 @@ def take_photo():
                 picam2.start()
                 time.sleep(1)
                 picam2.capture_file(imgname)
-                git_push()
                 time.sleep(2)
 
             #CHECKS IF READINGS ARE ABOVE THRESHOLD
@@ -93,6 +92,7 @@ def take_photo():
     except KeyboardInterrupt:
         print("Exit condition triggered - stopping photo capture")
         picam2.stop()
+    git_push()
 
 
 def main():
